@@ -1,0 +1,102 @@
+/* style.css — Formulario de registro */
+:root {
+  --azul:    #2c5f8a;
+  --azul-h:  #1e4870;
+  --texto:   #2d3340;
+  --sutil:   #6b7280;
+  --rojo:    #d0312d;
+  --verde:   #2a7a4b;
+  --borde:   #d1d5db;
+  --fondo:   #f5f6f8;
+  --card:    #ffffff;
+  --sec:     #f0f4f8;
+  --r:       6px;
+  --t:       0.2s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--fondo);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: var(--texto);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.contenedor {
+  background: var(--card);
+  border-radius: var(--r);
+  box-shadow: 0 2px 16px rgba(0,0,0,.08);
+  width: 100%;
+  max-width: 460px;
+  padding: 40px 36px;
+}
+
+.encabezado { margin-bottom: 28px; border-left: 4px solid var(--azul); padding-left: 12px; }
+.encabezado h1 { font-size: 1.5rem; font-weight: 600; }
+.encabezado p  { font-size: .875rem; color: var(--sutil); margin-top: 4px; }
+
+.campo { display: flex; flex-direction: column; margin-bottom: 18px; }
+.campo label { font-size: .85rem; font-weight: 600; margin-bottom: 6px; }
+.campo input {
+  border: 1.5px solid var(--borde);
+  border-radius: var(--r);
+  padding: 10px 12px;
+  font-size: .95rem;
+  color: var(--texto);
+  background: #fff;
+  transition: border-color var(--t), box-shadow var(--t);
+}
+.campo input:focus         { outline: none; border-color: var(--azul); box-shadow: 0 0 0 3px rgba(44,95,138,.18); }
+.campo input:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+.campo input.invalido      { border-color: var(--rojo);  background: #fff8f8; }
+.campo input.valido        { border-color: var(--verde); background: #f6fbf8; }
+
+.mensaje-error { font-size: .78rem; color: var(--rojo); margin-top: 4px; min-height: 16px; }
+
+#btn-registrar {
+  width: 100%; padding: 12px; margin-top: 8px;
+  background: var(--azul); color: #fff;
+  font-size: 1rem; font-weight: 600;
+  border: none; border-radius: var(--r);
+  cursor: pointer;
+  transition: background var(--t), opacity var(--t);
+}
+#btn-registrar:hover:not(:disabled) { background: var(--azul-h); }
+#btn-registrar:disabled             { opacity: .45; cursor: not-allowed; }
+#btn-registrar:focus-visible        { outline: 3px solid var(--azul); outline-offset: 3px; }
+
+.mensaje-exito { margin-top: 12px; font-size: .875rem; color: var(--verde); font-weight: 500; text-align: center; min-height: 20px; }
+
+.seccion-usuarios { margin-top: 32px; border-top: 1px solid var(--borde); padding-top: 24px; }
+.usuarios-cabecera { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.usuarios-cabecera h2 { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+.contador-badge { background: var(--azul); color: #fff; font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; min-width: 24px; text-align: center; }
+
+.btn-limpiar { font-size: .78rem; color: var(--rojo); background: none; border: 1px solid var(--rojo); border-radius: var(--r); padding: 4px 10px; cursor: pointer; transition: background var(--t), color var(--t); }
+.btn-limpiar:hover { background: var(--rojo); color: #fff; }
+
+.lista-vacia { font-size: .85rem; color: var(--sutil); text-align: center; padding: 16px 0; }
+
+.usuario-tarjeta {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--sec); border-radius: var(--r);
+  padding: 12px 14px; margin-bottom: 8px;
+  border-left: 3px solid var(--azul);
+  animation: entrar .2s ease;
+}
+@keyframes entrar { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+
+.usuario-numero { font-size: .8rem; font-weight: 700; color: var(--azul); min-width: 20px; text-align: center; }
+.usuario-info   { display: flex; flex-direction: column; gap: 2px; overflow: hidden; min-width: 0; }
+.usuario-info strong { font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.usuario-info span   { font-size: .8rem; color: var(--sutil); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.usuario-info small  { font-size: .72rem; color: #9ca3af; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
+@media (max-width: 480px) { .contenedor { padding: 28px 20px; } }
